@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { Body, Controller, Get, Param, Post,UnprocessableEntityException,UseFilters,ValidationPipe,ParseUUIDPipe, HttpCode, Res  } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post,ParseUUIDPipe, HttpCode} from '@nestjs/common';
 import {TeamsService} from './teams.service';
 import {TeamDto} from './team.model';
-import {HttpException,HttpStatus} from '@nestjs/common';
+import {HttpStatus} from '@nestjs/common';
 
 
 
@@ -29,7 +29,7 @@ constructor(private teamService:TeamsService){}
     @Post('team')
     @HttpCode(HttpStatus.CREATED)
     async createTeam(@Body() newTeam: TeamDto){
-      return {id:this.teamService.addTeam(newTeam).id};
+      return this.teamService.addTeam(newTeam).id;
      
     }
 

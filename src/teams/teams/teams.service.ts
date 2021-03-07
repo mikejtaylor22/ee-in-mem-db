@@ -1,6 +1,6 @@
 import {TeamDto} from '../teams/team.model';
 import { InMemoryDBService } from '@nestjs-addons/in-memory-db';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class TeamsService {
@@ -15,8 +15,12 @@ export class TeamsService {
         return this.dbService.getAll();
     }
 
-    getSingleTeam(id:string):TeamDto{
-        return this.dbService.get(id);
+   async getSingleTeam(id:string):Promise<TeamDto>{
+        const team =  await this.dbService.get(id);
+        if(team){
+            return team;
+        }
+        throw new HttpException('Team not found',HttpStatus.NOT_FOUND)
     }
    
      

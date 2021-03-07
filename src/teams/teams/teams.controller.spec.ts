@@ -30,5 +30,5 @@ describe('TeamsController', () => {
     await controller.getAllTeams();
     expect(mockTeamService.getAll).toBeCalled();
   });
-  //test the other 2 controller methods.. await controller.getAllTeams() and .createTeams();
+ 
 });

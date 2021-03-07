@@ -1,10 +1,8 @@
 import {Min,Max, Length, IsString, IsInt } from 'class-validator';
 import { TeamEntity } from './TeamEntity';
 
-
 export class TeamDto implements TeamEntity{
   
-    
    id:string;
 
     @Length(1,50)
@@ -27,7 +25,5 @@ export class TeamDto implements TeamEntity{
     this.numMembers = numMembers;
     this.numCoaches = numCoaches;
     }
-
-   
 
 }

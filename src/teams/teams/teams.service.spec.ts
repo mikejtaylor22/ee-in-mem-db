@@ -18,13 +18,13 @@ describe('TeamsService', () => {
 
 
 
-  it('should create a team',  () => {
+  it('should create a team and call create method',  () => {
     const team = new TeamDto("Team Liquid",100,5)
     service.addTeam(team);
     expect(mockInMemoryDb.create).toHaveBeenCalledWith(team);
   });
 
-  it('should get a team',  () => {
+  it('should get a team from DB with id 1',  () => {
     
     service.getSingleTeam("1");
     expect(mockInMemoryDb.get).toHaveBeenCalledWith("1");

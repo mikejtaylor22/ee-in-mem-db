@@ -15,13 +15,13 @@ constructor(private teamService:TeamsService){}
 
     @Get('team/:id')
    async getTeam(@Param('id', new ParseUUIDPipe({errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY})) id:string):Promise<TeamDto>{
-        return this.teamService.getSingleTeam(id);
+        return await this.teamService.getSingleTeam(id);
     }
 
     @Get('teams')
     @HttpCode(HttpStatus.OK)
     async getAllTeams():Promise<TeamDto[]>{
-        return this.teamService.getAll();
+        return await this.teamService.getAll();
     }
 
   
@@ -29,7 +29,7 @@ constructor(private teamService:TeamsService){}
     @Post('team')
     @HttpCode(HttpStatus.CREATED)
     async createTeam(@Body() newTeam: TeamDto){
-      return this.teamService.addTeam(newTeam).id;
+      return await (await this.teamService.addTeam(newTeam)).id;
      
     }
 

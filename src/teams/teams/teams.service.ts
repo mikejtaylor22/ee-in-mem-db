@@ -7,12 +7,12 @@ export class TeamsService {
   constructor(private readonly dbService:InMemoryDBService<TeamDto>){}
    
 
-    addTeam(team:TeamDto):TeamDto{
-        return this.dbService.create(team); 
+   async addTeam(team:TeamDto):Promise<TeamDto>{
+        return await this.dbService.create(team); 
     }
 
-    getAll():TeamDto[] {
-        return this.dbService.getAll();
+    async getAll():Promise<TeamDto[]> {
+        return await this.dbService.getAll();
     }
 
    async getSingleTeam(id:string):Promise<TeamDto>{
